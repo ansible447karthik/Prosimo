@@ -7,7 +7,7 @@
       git:
         repo: "https://github.com/ansible447karthik/Prosimo.git"
         dest: "/tmp/terraform"
-        version: "master"
+        version: "main"
       register: git_clone
 
     - name: Run Terraform commands
