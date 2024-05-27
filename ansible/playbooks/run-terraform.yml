@@ -1,19 +1,20 @@
 ---
-- name: Run Terraform
+- name: Run Terraform commands
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   tasks:
-    - name: Clone Terraform repository
-      git:
-        repo: "https://github.com/ansible447karthik/Prosimo.git"
-        dest: "/tmp/terraform"
-        version: "main"
-      register: git_clone
+    - name: Change to directory containing main.tf
+      ansible.builtin.cd:
+        path: "/home/ec2-user/terraform-aws"  # Update this path to the directory containing your main.tf file
 
-    - name: Run Terraform commands
-      shell: |
-        cd /tmp/terraform/terraform
-        terraform init
-        terraform plan
-        terraform apply -auto-approve
-      when: git_clone.changed
+    - name: Initialize Terraform
+      ansible.builtin.command:
+        cmd: terraform init
+
+    - name: Plan Terraform changes
+      ansible.builtin.command:
+        cmd: terraform plan
+
+    - name: Apply Terraform changes
+      ansible.builtin.command:
+        cmd: terraform apply -auto-approve
