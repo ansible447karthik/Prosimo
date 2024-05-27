@@ -2,18 +2,19 @@
 - name: Run Terraform commands
   hosts: localhost
   gather_facts: false
+  become: true
   tasks:
     - name: Initialize Terraform
-      ansible.builtin.command:
+      command:
         cmd: terraform init
-        chdir: "/home/ec2-user/terraform-aws"  # Update this path to the directory containing your main.tf file
-
+        chdir: "/home/ec2-user/terraform-aws"
+      
     - name: Plan Terraform changes
-      ansible.builtin.command:
+      command:
         cmd: terraform plan
         chdir: "/home/ec2-user/terraform-aws"
 
     - name: Apply Terraform changes
-      ansible.builtin.command:
+      command:
         cmd: terraform apply -auto-approve
         chdir: "/home/ec2-user/terraform-aws"
