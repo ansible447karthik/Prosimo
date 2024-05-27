@@ -1,0 +1,2 @@
+---
+- name: Run Terraform to provision EC2 instances
