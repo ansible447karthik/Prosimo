@@ -4,7 +4,7 @@
   gather_facts: false
   tasks:
     - name: Change to directory containing main.tf
-      ansible.builtin.cd:
+      ansible.builtin.command:
         path: "/home/ec2-user/terraform-aws"  # Update this path to the directory containing your main.tf file
 
     - name: Initialize Terraform
